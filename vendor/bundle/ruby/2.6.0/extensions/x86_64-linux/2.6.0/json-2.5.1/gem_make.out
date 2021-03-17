@@ -1,0 +1,14 @@
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/json-2.5.1/ext/json
+/usr/bin/ruby -I /usr/share/rubygems -r ./siteconf20210316-48234-qe3ywm.rb extconf.rb
+creating Makefile
+
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/json-2.5.1/ext/json
+make "DESTDIR=" clean
+rm -f  *.o  *.bak mkmf.log .*.time
+
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/json-2.5.1/ext/json
+make "DESTDIR="
+make: Für das Ziel „all“ ist nichts zu tun.
+
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/json-2.5.1/ext/json
+make "DESTDIR=" install

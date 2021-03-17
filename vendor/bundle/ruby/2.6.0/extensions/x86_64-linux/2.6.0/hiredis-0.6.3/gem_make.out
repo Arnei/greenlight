@@ -1,0 +1,37 @@
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/hiredis-0.6.3/ext/hiredis_ext
+/usr/bin/ruby -I /usr/share/rubygems -r ./siteconf20200420-122874-1bfk4y8.rb extconf.rb
+checking for sys/socket.h... yes
+cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb net.c
+cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb hiredis.c
+cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb sds.c
+cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb async.c
+cc -std=c99 -pedantic -c -O3 -fPIC  -Wall -W -Wstrict-prototypes -Wwrite-strings -g -ggdb read.c
+ar rcs libhiredis.a net.o hiredis.o sds.o async.o read.o
+checking for rb_thread_fd_select()... yes
+creating Makefile
+
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/hiredis-0.6.3/ext/hiredis_ext
+make "DESTDIR=" clean
+rm -f 
+rm -f hiredis_ext.so  *.o  *.bak mkmf.log .*.time
+
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/hiredis-0.6.3/ext/hiredis_ext
+make "DESTDIR="
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I. -DHAVE_SYS_SOCKET_H -DHAVE_RB_THREAD_FD_SELECT    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -I./../../vendor/hiredis -m64 -o connection.o -c connection.c
+connection.c: In Funktion »connection_read«:
+connection.c:458:24: Warnung: Übergabe des Arguments 2 von »__get_reply« entfernt Kennzeichner »volatile« von Zeiger-Ziel-Typ [-Wdiscarded-qualifiers]
+  458 |     if (__get_reply(pc,&reply) == -1)
+      |                        ^~~~~~
+connection.c:375:55: Anmerkung: »VALUE *« {alias »long unsigned int *«} erwartet, aber Argument hat Typ »volatile VALUE *« {alias »volatile long unsigned int *«}
+  375 | static int __get_reply(redisParentContext *pc, VALUE *reply) {
+      |                                                ~~~~~~~^~~~~
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I. -DHAVE_SYS_SOCKET_H -DHAVE_RB_THREAD_FD_SELECT    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -I./../../vendor/hiredis -m64 -o hiredis_ext.o -c hiredis_ext.c
+gcc -I. -I/usr/include -I/usr/include/ruby/backward -I/usr/include -I. -DHAVE_SYS_SOCKET_H -DHAVE_RB_THREAD_FD_SELECT    -fPIC -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fPIC -I./../../vendor/hiredis -m64 -o reader.o -c reader.c
+rm -f hiredis_ext.so
+gcc -shared -o hiredis_ext.so connection.o hiredis_ext.o reader.o -L. -L/usr/lib64 -L. -Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld -fstack-protector-strong -rdynamic -Wl,-export-dynamic ./../../vendor/hiredis/libhiredis.a -Wl,-z,relro -Wl,--as-needed  -Wl,-z,now -specs=/usr/lib/rpm/redhat/redhat-hardened-ld  -m64  -lruby  -lm   -lc
+
+current directory: /home/arnewilken/IdeaProjects/greenlight/vendor/bundle/ruby/2.6.0/gems/hiredis-0.6.3/ext/hiredis_ext
+make "DESTDIR=" install
+/usr/bin/mkdir -p . ./.gem.20200420-122874-1qx01fn/hiredis/ext
+exit > .sitearchdir.-.hiredis.-.ext.time
+/usr/bin/install -c -m 0755 hiredis_ext.so ./.gem.20200420-122874-1qx01fn/hiredis/ext
