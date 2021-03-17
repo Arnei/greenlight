@@ -174,6 +174,7 @@ class RoomsController < ApplicationController
     # Join the user in and start the meeting.
     opts = default_meeting_options
     opts[:user_is_moderator] = true
+    opts[:user_username] = User.find_by(id: @room.user_id).username
 
     # Include the user's choices for the room settings
     @room_settings = JSON.parse(@room[:room_settings])
