@@ -45,6 +45,8 @@ module BbbServer
   # Returns a URL to join a user into a meeting.
   def join_path(room, name, options = {}, uid = nil)
     # Create the meeting, even if it's running
+    options[:user_name] = User.find_by(id: room.user_id).name
+    puts "options = #{options}"
     start_session(room, options)
 
     # Determine the password to use when joining.
@@ -61,6 +63,7 @@ module BbbServer
 
   # Creates a meeting on the BigBlueButton server.
   def start_session(room, options = {})
+    username = options[:user_username].nil? ? "" : options[:user_username]
     create_options = {
       record: options[:record].to_s,
       logoutURL: options[:meeting_logout_url] || '',
@@ -70,7 +73,14 @@ module BbbServer
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
       "meta_bbb-origin": "Greenlight",
-      "meta_bbb-origin-server-name": options[:host]
+      "meta_bbb-origin-server-name": options[:host],
+      "meta_opencast-dc-title": Time.now.strftime("%d.%m.%Y %H:%M") + " " + room.name,
+      "meta_opencast-dc-creator": options[:user_name],
+      "meta_opencast-dc-created": Time.now.strftime("%d.%m.%Y %H:%M"),
+      "meta_opencast-dc-language": "DE",
+      "meta_opencast-dc-rightsHolder": username,
+      "meta_opencast-dc-isPartOf": room.bbb_id,
+      "meta_opencast-series-dc-title": room.name
     }
 
     create_options[:muteOnStart] = options[:mute_on_start] if options[:mute_on_start]
